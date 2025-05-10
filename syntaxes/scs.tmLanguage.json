@@ -22,20 +22,32 @@
 		}
 	],
 	"repository": {
-
 		"aliases": {
 			"patterns": [
 				{
-					"match": "\\b(sc_node|sc_link|sc_edge_dcommon|sc_edge_ucommon|sc_edge_main|sc_edge_access)(#)(([.]{3})|([.]{0,2}\\w+))\\b",
+					"match": "\\b(rrel_[a-zA-Z0-9_]+)\\b",
+					"name": "entity.name.function.scs"  
+				},
+				{
+					"match": "\\b(nrel_[a-zA-Z0-9_]+)\\b",
+					"name": "entity.name.function.scs"  
+				},
+				{
+					"match": "@[a-zA-Z0-9_]+",
+					"name": "variable.language.scs"  
+				},
+
+				{
+					"match": "\\b(sc_node|sc_link|sc_common_edge|sc_common_arc|sc_main_arc|sc_membership_arc)(#)(([.]{3})|([.]{0,2}\\w+))\\b",
 					"captures": {
-						"1": {
-							"name": "keyword.control.scs"
+						"1": { 
+							"name": "keyword.control.scs" 
 						},
-						"2": {
-							"name": "keyword.operator.scs"
+						"2": { 
+							"name": "keyword.operator.scs" 
 						},
-						"3": {
-							"name": "variable.language.scs"
+						"3": { 
+							"name": "variable.language.scs" 
 						}
 					}
 				},
@@ -44,15 +56,15 @@
 					"name": "storage.type.scs"
 				},
 				{
-					"match": "\\b(sc_node_(not_binary_tuple|struct|role_relation|norole_relation|(class|not_relation)|abstract|material))\\b",
+					"match": "\\b(sc_node_(tuple|structure|role_relation|non_role_relation|(class|superclass)|material))\\b",
 					"name": "storage.type.scs"
 				},
 				{
-					"match": "\\b(sc_edge_(pos|neg|fuz|perm|temp))\\b",
+					"match": "\\b(sc_common_edge_(pos|neg|fuz|perm|temp))\\b",
 					"name": "storage.type.scs"
 				},
 				{
-					"match": "\\b(sc_node|sc_link|sc_edge_dcommon|sc_edge_ucommon|sc_edge_main|sc_edge_access)\\b",
+					"match": "\\b(sc_node|sc_link|sc_common_edge|sc_common_arc|sc_main_arc|sc_membership_arc)\\b",
 					"name": "keyword.control.scs"
 				},
 				{
@@ -79,14 +91,14 @@
 				{
 					"begin": "\\[(?!\\*)",
 					"beginCaptures": {
-						"0": {
-							"name": "keyword.operator.scs"
+						"0": { 
+							"name": "keyword.operator.scs" 
 						}
 					},
 					"end": "\\]",
 					"endCaptures": {
-						"0": {
-							"name": "keyword.operator.scs"
+						"0": { 
+							"name": "keyword.operator.scs" 
 						}
 					},
 					"name": "markup.italic.scs"
@@ -112,20 +124,84 @@
 
 		"connectors": {
 			"patterns": [
+				
 				{
-					"match": "\\s*[_]?([-~][/|]?)>\\s*",
+					"match": "\\s*[?_]?<=>\\s*",
 					"name": "keyword.operator.scs"
 				},
+
 				{
-					"match": "\\s*[_]?<([/|]?[-~])\\s*",
+					"match": "\\s*[?_]?[=/]>\\s*",
 					"name": "keyword.operator.scs"
 				},
+				
 				{
-					"match": "\\s*[_]?(=>)|(<=)\\s*",
+					"match": "\\s*<[=/][?_]?\\s*",
 					"name": "keyword.operator.scs"
 				},
+				
 				{
-					"match": "\\s*([_]?<=>)|([.]{0,2}>|<[.]{0,2})\\s*",
+					"match": "\\s*[?_]?[-~%][?|]?>\\s*",
+					"name": "keyword.operator.scs"
+				},
+				
+				{
+					"match": "\\s*<[?|]?[-~%][?_]?\\s*",
+					"name": "keyword.operator.scs"
+				},
+
+				{
+					"match": "\\s*[?_]?\\.\\.[?|]?>\\s*",
+					"name": "keyword.operator.scs"
+				},
+
+				{
+					"match": "\\s*[_]?\\.>\\s*",
+					"name": "keyword.operator.scs"
+				},
+
+				{
+					"match": "\\s*<[?|]?\\.\\.[?_]?\\s*",
+					"name": "keyword.operator.scs"
+				},
+
+				{
+					"match": "\\s*<\\.[_]?\\s*",
+					"name": "keyword.operator.scs"
+				},
+				
+				{
+					"match": "\\s*[_]?\\?\\?>\\s*",
+					"name": "keyword.operator.scs"
+				},
+
+				{
+					"match": "\\s*<\\?\\?[_]?\\s*",
+					"name": "keyword.operator.scs"
+				},
+
+				{
+					"match": "\\s*\\?\\.\\?>\\s*",
+					"name": "keyword.operator.scs"
+				},
+
+				{
+					"match": "\\s*<\\?\\.\\?\\s*",
+					"name": "keyword.operator.scs"
+				},
+				
+				{
+					"match": "\\s*[_?]?\\?\\|>\\s*",
+					"name": "keyword.operator.scs"
+				},
+				
+				{
+					"match": "\\s*<\\|\\?[_?]?\\s*",
+					"name": "keyword.operator.scs"
+				},
+				
+				{
+					"match": "\\s*[-~]```\\s*",
 					"name": "keyword.operator.scs"
 				}
 			]
@@ -135,8 +211,8 @@
 			"patterns": [
 				{
 					"captures": {
-						"1": {
-							"name": "meta.toc-list.banner.block.scs"
+						"1": { 
+							"name": "meta.toc-list.banner.block.scs" 
 						}
 					},
 					"match": "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?",
@@ -146,13 +222,13 @@
 					"begin": "/\\*",
 					"beginCaptures": {
 						"0": {
-							"name": "punctuation.definition.comment.begin.scs"
-						}
+							"name": "punctuation.definition.comment.begin.scs" 
+							}
 					},
 					"end": "\\*/",
 					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.comment.end.scs"
+						"0": { 
+							"name": "punctuation.definition.comment.end.scs" 
 						}
 					},
 					"name": "comment.block.scs"
@@ -163,8 +239,8 @@
 				},
 				{
 					"captures": {
-						"1": {
-							"name": "meta.toc-list.banner.line.scs"
+						"1": { 
+							"name": "meta.toc-list.banner.line.scs" 
 						}
 					},
 					"match": "^// =(\\s*.*?)\\s*=\\s*$\\n?",
@@ -173,8 +249,8 @@
 				{
 					"begin": "(^[ \\t]+)?(?=//)",
 					"beginCaptures": {
-						"1": {
-							"name": "punctuation.whitespace.comment.leading.scs"
+						"1": { 
+							"name": "punctuation.whitespace.comment.leading.scs" 
 						}
 					},
 					"end": "(?!\\G)",
@@ -182,8 +258,8 @@
 						{
 							"begin": "//",
 							"beginCaptures": {
-								"0": {
-									"name": "punctuation.definition.comment.scs"
+								"0": { 
+									"name": "punctuation.definition.comment.scs" 
 								}
 							},
 							"end": "\\n",
@@ -204,14 +280,13 @@
 				{
 					"match": "(\\\\)\\n",
 					"captures": {
-						"1": {
-							"name": "constant.character.escape.line-continuation.scs"
+						"1": { 
+							"name": "constant.character.escape.line-continuation.scs" 
 						}
 					}
 				}
 			]
 		}
-
 	},
 	"scopeName": "source.scs"
 }
